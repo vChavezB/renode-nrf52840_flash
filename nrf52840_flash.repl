@@ -1,0 +1,25 @@
+/*
+* Copyright 2024 Victor Chavez (vchavezb@protonmail.com)
+* SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+// Hardcoded FICR values for NRF52840
+ficr_page_cnt: Python.PythonPeripheral @ sysbus 0x10000014
+    size: 0x4
+    initable: false
+    script: "request.value = 256"
+
+ficr_page_size: Python.PythonPeripheral @ sysbus 0x10000010
+    size: 0x4
+    initable: false
+    script: "request.value = 4096"
+
+ficr_na: Python.PythonPeripheral @ sysbus 0x10000130
+    size: 0x8
+    initable: false
+    script: "request.value = 1"
+
+// Declaration of NVCM
+// Required to load NRF52840_nvcm.cs first.
+nvcm: Miscellaneous.NRF_NVCM @ sysbus 0x4001E000
+    flash: flash
