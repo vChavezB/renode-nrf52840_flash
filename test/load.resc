@@ -1,0 +1,6 @@
+using sysbus
+
+mach add "test"
+include $ORIGIN/../nrf52840_nvcm.cs
+machine LoadPlatformDescription @platforms/cpus/nrf52840.repl
+machine LoadPlatformDescription $ORIGIN/../nrf52840_flash.repl

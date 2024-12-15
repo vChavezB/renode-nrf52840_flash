@@ -1,0 +1,28 @@
+# Copyright (c) 2024, Victor Chavez (vchavezb@protonmail.com)
+# SPDX-License-Identifier: Apache-2.0
+
+name: Load files
+on:
+  push:
+  pull_request:
+
+jobs:
+  load:
+    runs-on: ubuntu-22.04
+    container: 
+      image: antmicro/renode:1.15.2
+      options: --user root
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Install pyrenode3
+        run: |
+          apt-get update
+          apt-get install mono-devel git -y
+          pip3 install "pyrenode3[all] @ git+https://github.com/antmicro/pyrenode3.git"
+      - name: load files
+        run: |
+          cd test
+          renode -e "i @load.resc"
+          python3 load_local.py
+          python3 load_git.py
