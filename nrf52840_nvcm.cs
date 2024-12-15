@@ -1,7 +1,5 @@
-/*
-* Copyright 2024 Victor Chavez (vchavezb@protonmail.com)
-* SPDX-License-Identifier: GPL-3.0-or-later
-*/
+// Copyright 2024 Victor Chavez (vchavezb@protonmail.com)
+// SPDX-License-Identifier: GPL-3.0-or-later
 using Antmicro.Renode.Peripherals.Bus;
 using Antmicro.Renode.Logging;
 using Antmicro.Renode.Core;
@@ -19,6 +17,7 @@ namespace Antmicro.Renode.Peripherals.Miscellaneous
         private readonly IMachine machine;
         private readonly IBusController sysbus;
         private readonly MappedMemory  flash;
+        public long Size => 0x550;
         private uint config = 0x0;        
         private const uint PAGE_SIZE = 0x1000;
         private enum Register : long
